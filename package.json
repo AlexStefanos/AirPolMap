@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "start": "npx vite --host airpolmap-wmr2z.ondigitalocean.app",
+    "start": "npx vite --host 0.0.0.0 --port 8080",
     "lint": "eslint .",
     "preview": "vite preview"
   },
