@@ -8,6 +8,8 @@ export default defineConfig({
     svgr()
   ],
   preview: {
-    host: "airpolmap-wmr2z.ondigitalocean.app"
+    host: true,
+    port: 8080,
+    allowedHosts: ['airpolmap-abc123.ondigitalocean.app']
   },
 })
