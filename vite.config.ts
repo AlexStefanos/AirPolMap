@@ -7,6 +7,9 @@ export default defineConfig({
     react(),
     svgr()
   ],
+  server: {
+    allowedHosts: true
+  },
   preview: {
     allowedHosts: true
   },
