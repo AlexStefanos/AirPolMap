@@ -2,7 +2,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import svgr from "vite-plugin-svgr"
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     svgr()
@@ -15,10 +15,10 @@ export default defineConfig({
   server: {
     host: true,
     hmr: {
-      host: "localhost",
+      hmr: command === 'serve' ? { host: 'localhost' } : false,
       port: 5173,
       protocol: "ws",
     },
     allowedHosts: true,
   }
-})
+}))
