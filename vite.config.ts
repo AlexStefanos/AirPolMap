@@ -7,4 +7,7 @@ export default defineConfig({
     react(),
     svgr()
   ],
+  preview: {
+    host: "airpolmap-wmr2z.ondigitalocean.app"
+  },
 })

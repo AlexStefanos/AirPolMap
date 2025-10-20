@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "start": "vite preview --port 8080 --host",
+    "start": "npx vite",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --port 8080 --host"
   },
   "dependencies": {
     "react": "^19.1.1",
