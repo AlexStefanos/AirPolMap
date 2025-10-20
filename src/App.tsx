@@ -1,12 +1,9 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import { useState } from 'react'
-import './App.css'
-import FranceRegions from './assets/france.regions.svg?react'
+import "./App.css"
+import FranceRegions from "./assets/france.regions.svg?react"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
         <div>
