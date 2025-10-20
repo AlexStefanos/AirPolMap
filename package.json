@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "start": "npm run start",
+    "start": "npx vite --host airpolmap-wmr2z.ondigitalocean.app",
     "lint": "eslint .",
-    "preview": "vite preview --host 0.0.0.0 --port 8080"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.1",
