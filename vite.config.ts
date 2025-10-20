@@ -7,10 +7,14 @@ export default defineConfig({
     react(),
     svgr()
   ],
-  server: {
-    allowedHosts: true
-  },
   preview: {
+    host: true,
+    port: 8080,
     allowedHosts: true
   },
+  server: {
+    host: true,
+    port: 5173,
+    allowedHosts: true
+  }
 })
