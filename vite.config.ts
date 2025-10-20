@@ -14,11 +14,8 @@ export default defineConfig(({ command }) => ({
   },
   server: {
     host: true,
-    hmr: {
-      hmr: command === 'serve' ? { host: 'localhost' } : false,
-      port: 5173,
-      protocol: "ws",
-    },
+    hmr: command === 'serve' ? { host: 'localhost' } : false,
+    port: 5173,
     allowedHosts: true,
   }
 }))
