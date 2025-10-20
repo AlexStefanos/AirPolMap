@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "start": "npm run start",
     "lint": "eslint .",
-    "preview": "vite preview --port 8080 --host"
+    "preview": "vite preview --host airpolmap-wmr2z.ondigitalocean.app --port 8080"
   },
   "dependencies": {
     "react": "^19.1.1",
