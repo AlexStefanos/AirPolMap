@@ -36,7 +36,7 @@ function App() {
       polluant: polluant,
       metrique: metrique
     });
-    fetch(`https://api-airpolmap-4pco9.ondigitalocean.app/data?${metrique}&date=${formattedDate}&polluant=${polluant}`);
+    fetch(`https://api-airpolmap-4pco9.ondigitalocean.app/data?metrique=${metrique}&date=${formattedDate}&polluant=${polluant}`);
   };
 
   return (
