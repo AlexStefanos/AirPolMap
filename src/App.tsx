@@ -1,16 +1,33 @@
 /// <reference types='vite-plugin-svgr/client' />
 
 import './App.css'
-import FranceRegions from './assets/france.regions.svg?react'
+import FranceRegions from './assets/FranceRegions'
 import Pikaday from 'pikaday';
 import { useEffect, useRef, useState } from 'react';
 import 'pikaday/css/pikaday.css';
+
+type Region = {
+  id: string
+  name: string
+}
+
+type RegionValue = {
+  regionId: string
+  value: number
+}
 
 function App() {
   const pickerRef = useRef(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [polluant, setPolluant] = useState<string>('SO2');
   const [metrique, setMetrique] = useState<string>('MoyJ');
+  const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
+  const apiData: RegionValue[] = [
+    { regionId: 'ara', value: 2 },
+    { regionId: 'bfc', value: 8 },
+    { regionId: 'bre', value: 17 },
+  ]
+  const [regionValues, setRegionValues] = useState<Record<string, number>>({})
 
   useEffect(() => {
     const picker = new Pikaday({
@@ -24,7 +41,7 @@ function App() {
     return () => picker.destroy();
   }, []);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if(!selectedDate) {
       alert('Veuillez sélectionner une date');
       return;
@@ -36,7 +53,13 @@ function App() {
       polluant: polluant,
       metrique: metrique
     });
-    fetch(`https://api-airpolmap-4pco9.ondigitalocean.app/data?metrique=${metrique}&date=${formattedDate}&polluant=${polluant}`);
+    const result = await fetch(`https://api-airpolmap-4pco9.ondigitalocean.app/data?metrique=${metrique}&date=${formattedDate}&polluant=${polluant}`);
+    const data = await result.json();
+    const values: Record<string, number> = {}
+      data.forEach((item: any) => {
+      values[item.regionId] = item.value
+    })
+    setRegionValues(values);
   };
 
   return (
@@ -74,8 +97,27 @@ function App() {
           </fieldset>
         <button onClick={handleSearch}>Rechercher</button>
         </div>
-        <div>
-          <FranceRegions style={{ width: '80%'}} />
+        <div className='map-layout'>
+          <FranceRegions
+            style={{ width: '80%' }}
+            selectedRegion={selectedRegion?.id}
+            onRegionClick={setSelectedRegion}
+            regionValues={regionValues}
+          />
+          <div className="legend">
+            <h3>Données par région</h3>
+
+            {selectedRegion ? (
+              <>
+                <p><strong>{selectedRegion.name}</strong></p>
+                <div className="value-box">
+                  {regionValues[selectedRegion.id] ?? '—'}
+                </div>
+              </>
+              ) : (
+                <p>Cliquez sur une région</p>
+              )}
+          </div>
         </div>
     </>
   )
